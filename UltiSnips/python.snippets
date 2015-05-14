@@ -1,0 +1,46 @@
+snippet #! "Shebang header for python scripts"
+#!/usr/bin/env python
+# encoding: utf-8
+$0
+endsnippet
+
+snippet snip_ifmain "if __name__ == '__main__'"
+if __name__ == '__main__':
+	$0
+endsnippet
+
+snippet snip_arg "argparse.ArgumentParser"
+import argparse
+parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
+parser.add_argument("--prod-db", default='emma', help="Export production DB")
+parser.add_argument("--logdb", action="store_true", help="Export logging DB (only the past day)")
+args = parser.parse_args()
+endsnippet
+
+snippet snip_logging "logging.basicConfig(...)"
+import logging
+logging.basicConfig(filename='${1:filename}', format='[%(asctime)s] [%(levelname)s] %(message)s', level=logging.INFO)
+endsnippet
+
+snippet snip_daterange "def daterange(start_date, end_date):"
+def daterange(start_date, end_date):
+    ''' Return a list of date strings between start_date and end_date
+    All dates are in format of YYYY/MM/DD
+    '''
+    start_date = datetime.date(*map(int, start_date.split('/')))
+    end_date = datetime.date(*map(int, end_date.split('/')))
+    dates = []
+    d = start_date
+    while d <= end_date:
+        dates.append('%04d/%02d/%02d' % (d.year, d.month, d.day))
+        d += datetime.timedelta(days=1)
+    return dates
+endsnippet
+
+snippet snip_strftime "time.strftime('%Y%m%d'...)"
+time.strftime('%Y%m%d', ${1:#:date}.timetuple())
+endsnippet
+
+snippet snip_mktime "time.mktime(...)"
+time.mktime(${1:dateobj}.timetuple())
+endsnippet
