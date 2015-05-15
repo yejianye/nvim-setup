@@ -118,7 +118,6 @@ let mapleader = ","
 nnoremap s ;
 nnoremap S ,
 tnoremap <C-m><C-m> <C-\><C-n>
-imap <C-m><C-m> <C-\><C-n>
 imap <C-V> <C-R>"
 imap <C-B> <C-O>b
 imap <C-F> <C-O>w
@@ -431,7 +430,7 @@ EOF
 endfunction
 
 "Paste mod
-nmap <leader>pa :call PasteModelToggle()<CR>
+nmap <leader>pa :call PasteModeToggle()<CR>
 function! PasteModeToggle()
 	if &paste == 1
 		let &paste = 0
